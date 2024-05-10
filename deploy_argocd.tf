@@ -5,11 +5,11 @@ module "argocd_dev" {
 }
 
 
-#module "argocd_prod" {
-#  source           = "./terraform_argocd_eks"
-#  eks_cluster_name = "demo-prod"
-#  chart_version    = "5.46.2"
-#}
+module "argocd_prod" {
+  source           = "./terraform_argocd_eks"
+  eks_cluster_name = "demo-prod"
+  chart_version    = "5.46.2"
+}
 
 
 # Can be deployed ONLY after ArgoCD deployment: depends_on = [module.argocd_dev]
