@@ -1,25 +1,31 @@
-#----------------------------------------------------------------
+# This file contains the configuration for Argo CD
 # Highly Available mode with autoscaling require minimum 3 nodes!
+# https://argo-cd.readthedocs.io/en/release-2.5/operator-manual/high_availability/
+
 redis-ha:
   enabled: true
 
+# Set the number of replicas for the controller to 1
 controller:
   replicas: 1
 
+# Enable autoscaling for the server and set the minimum number of replicas to 2
 server:
   autoscaling:
     enabled: true
     minReplicas: 2
 
+# Enable autoscaling for the repoServer and set the minimum number of replicas to 2
 repoServer:
   autoscaling:
     enabled: true
     minReplicas: 2
 
+# Set the number of replicas for the applicationSet to 2
 applicationSet:
   replicas: 2
-#----------------------------------------------------------------
-# Fixing issue with Stuck Processing for Ingress resource
+
+# Customize the server configuration to fix the issue with Ingress resource
 server:
   config:
     resource.customizations: |
@@ -27,4 +33,4 @@ server:
         health.lua: |
           hs = {}
           hs.status = "Healthy"
-          return hs        
+          return hs

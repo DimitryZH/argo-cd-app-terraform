@@ -1,21 +1,27 @@
+# This YAML file defines an Argo CD Application resource that represents the root application.
+# It specifies the source and destination of the application, along with other configuration options.
+
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name     : root
+  name: root
   namespace: argocd
   finalizers:
-  - resources-finalizer.argocd.argoproj.io
+    - resources-finalizer.argocd.argoproj.io
 spec:
+  # Specifies the destination of the application within the cluster.
   destination:
-    name     : in-cluster
+    name: in-cluster
     namespace: argocd
+  # Specifies the source of the application, including the repository URL, path, and target revision.
   source:
-    repoURL       : "${repoURL}"
-    path          : "${path}"
+    repoURL: "${repoURL}"
+    path: "${path}"
     targetRevision: "${targetRevision}"
+  # Specifies the project that the application belongs to.
   project: default
+  # Specifies the sync policy for the application, including automated pruning and self-healing.
   syncPolicy:
     automated:
-      prune   : true
+      prune: true
       selfHeal: true
-      

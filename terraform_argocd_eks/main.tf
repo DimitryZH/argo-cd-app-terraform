@@ -1,11 +1,16 @@
+# This file is used to deploy the Argo CD Helm chart to an Amazon EKS cluster.
+
+# Retrieve information about the Amazon EKS cluster
 data "aws_eks_cluster" "this" {
   name = var.eks_cluster_name
 }
 
+# Retrieve authentication information for the Amazon EKS cluster
 data "aws_eks_cluster_auth" "this" {
   name = var.eks_cluster_name
 }
 
+# Configure the Helm provider to interact with the Kubernetes cluster
 provider "helm" {
   kubernetes {
     host                   = data.aws_eks_cluster.this.endpoint
@@ -14,7 +19,7 @@ provider "helm" {
   }
 }
 
-
+# Deploy the Argo CD Helm chart to the Kubernetes cluster
 resource "helm_release" "argocd" {
   name             = "argocd"
   repository       = "https://argoproj.github.io/argo-helm" # Official Chart Repo
@@ -24,5 +29,3 @@ resource "helm_release" "argocd" {
   create_namespace = true
   values           = [file("${path.module}/argocd.yaml")]
 }
-
-
