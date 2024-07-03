@@ -137,6 +137,9 @@ To deploy ArgoCD in a development environment, utilize the "argocd_dev" module l
 
 - Check ArgoCD to ensure the root application is correctly installed and operational for both environments.
 
+![root-prod](https://github.com/DimitryZH/argo-cd-app-terraform/assets/146372946/03bedc1d-14f1-465b-afba-c312bb69f8a8)
+
+
 ## Next Steps
 
 This project serves as a prerequisite for automating the deployment of applications using ArgoCD. For detailed instructions on deploying specific applications with ArgoCD, refer to [Automated Application Deployments with ArgoCD](https://github.com/DimitryZH/argo-cd-app). The configurations and setups established here lay the foundational infrastructure necessary for leveraging ArgoCD's capabilities in managing Kubernetes applications seamlessly.
